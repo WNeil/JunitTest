@@ -18,14 +18,18 @@ public class CILabTest {
         myString = null;
     }
 
+    //null string
     @Test
     public void detectCapitalUseTest1() {
-       fail("Not yet implemented");
-
+        myString.setString("");
+        return myString.detectCapitalUsage();
     }
+
+    //not a string
     @Test
     public void detectCapitalUseTest2() {
-        fail("Not yet implemented");
+        myString.setString(5);
+        return myString.detectCapitalUsage();
     }
 
 
