@@ -18,18 +18,39 @@ public class CILabTest {
         myString = null;
     }
 
+    //gotta figure out some test cases:
+
+    /**
+     * a null string, number string, space at start, middle, or end
+     *
+     *
+     */
+
+
     //null string
     @Test
     public void detectCapitalUseTest1() {
         myString.setString("");
-        return myString.detectCapitalUsage();
+        //fail(!myString.detectCapitalUse());
     }
 
-    //not a string
+    //number string
     @Test
     public void detectCapitalUseTest2() {
-        myString.setString(5);
-        return myString.detectCapitalUsage();
+        myString.setString("1386");
+        if(myString.detectCapitalUse()) {
+            fail("numbers seen as capital letters");
+        }
+        //fail(myString.detectCapitalUsage()); //is the way?
+    }
+
+    //space at start
+    @Test
+    public void detectCapitalUseTest3() {
+        myString.setString(" B");
+        if(!myString.detectCapitalUse()) {
+            fail("space at start should not matter");
+        }
     }
 
 
