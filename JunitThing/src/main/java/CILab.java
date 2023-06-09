@@ -11,13 +11,33 @@ public class CILab implements CILabInterface {
         myString = string;
     }
 
+
+    //detecting correct capital usage:
+    //first letter is capital only
+    //OR all letters are capital, OR none of them are
     @Override
     public boolean detectCapitalUse() {
-        for(int i = 0; i < myString.length(); i++) {
-            //has to be rewritten to subscribe to the rules of the challenge
-            if(Character.isUpperCase(myString.charAt(i))) {return true;}
+        if(myString.length() == 0) {return false;}
+        //get just the letters
+        String justLetters = myString.replaceAll("[\\W]", "");
+        //base case
+        if(justLetters.length() == 1) {
+            return Character.isUpperCase(justLetters.charAt(0));
         }
-        return false;
+
+        //get the idea of the casing at the start, true is caps false is not
+        boolean startCap = Character.isUpperCase(justLetters.charAt(0));
+        boolean proper = false; //for the case of the starting cap and no more caps
+
+        for(int i = 1; i < justLetters.length() - 1; i++) {
+            if(Character.isUpperCase(justLetters.charAt(i)) != startCap) { //doesn't match
+                if(startCap) { proper = true; continue; } //if its caps, then we're still following rules
+                else { return false; } //if not, it'd be a caps following lowercase
+            } else if(proper) {
+                return false;
+            }
+        }
+        return true; //no problems found
     }
 
 

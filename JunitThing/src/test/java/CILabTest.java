@@ -31,25 +31,35 @@ public class CILabTest {
     @Test
     public void detectCapitalUseTest1() {
         myString.setString("");
-        //fail(!myString.detectCapitalUse());
+        if(myString.detectCapitalUse()) {
+            fail("no caps in an empty string");
+        }
     }
 
-    //number string
+    //number string, should be unacceptable?
     @Test
     public void detectCapitalUseTest2() {
-        myString.setString("1386");
+        myString.setString("1");
         if(myString.detectCapitalUse()) {
-            fail("numbers seen as capital letters");
+            fail("numbers aren't capital letters");
         }
-        //fail(myString.detectCapitalUsage()); //is the way?
     }
 
-    //space at start
+    //spaces
     @Test
     public void detectCapitalUseTest3() {
-        myString.setString(" B");
+        myString.setString(" B a s e ");
         if(!myString.detectCapitalUse()) {
-            fail("space at start should not matter");
+            fail("spaces don't matter");
+        }
+    }
+
+    //punctuation
+    @Test
+    public void detectCapitalUseTest4() {
+        myString.setString("U.S.A");
+        if(!myString.detectCapitalUse()) {
+            fail("Punctuation does not matter");
         }
     }
 
