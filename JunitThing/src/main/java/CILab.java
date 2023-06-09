@@ -31,7 +31,7 @@ public class CILab implements CILabInterface {
 
         for(int i = 1; i < justLetters.length() - 1; i++) {
             if(Character.isUpperCase(justLetters.charAt(i)) != startCap) { //doesn't match
-                if(startCap) { proper = true; continue; } //if its caps, then we're still following rules
+                if(startCap) { proper = true; } //if its caps, then we're still following rules
                 else { return false; } //if not, it'd be a caps following lowercase
             } else if(proper) {
                 return false;
